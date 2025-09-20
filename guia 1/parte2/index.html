@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda TechPro - Productos Destacados</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">TechPro</div>
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#">Productos</a>
+            <a href="#">Ofertas</a>
+            <a href="#">Contacto</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Descubre la mejor tecnología para ti</h1>
+        <p>Equipos de última generación, accesorios y más. ¡Compra fácil, rápido y seguro!</p>
+    </section>
+
+    <main>
+        <h2 class="section-title">Productos Destacados</h2>
+        <div id="contenedor"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TechPro S.A.S. Todos los derechos reservados.</p>
+    </footer>
+
+    <template id="card-template">
+        <div class="card">
+            <img class="product-img" src="" alt="Imagen producto">
+            <h2 class="title"></h2>
+            <p class="desc"></p>
+            <div class="price"></div>
+            <button class="buy-btn">Comprar</button>
+        </div>
+    </template>
+</body>
+<script src="js/template.js"></script>
+
+</html>
