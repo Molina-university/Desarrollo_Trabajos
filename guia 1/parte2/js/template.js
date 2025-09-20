@@ -27,13 +27,70 @@ const productos = [
     img: "https://img.global.news.samsung.com/mx/wp-content/uploads/2022/02/Odyssey-Neo-G9_2.jpg"
   },
   {
-    titulo: "Auriculares Bluetooth",
+    titulo: "Auriculares Gaming",
     desc: "Cancelación de ruido, hasta 30h de batería.",
     precio: "$320.000",
-    img: "https://andro4all.com/hero/2019/12/Ofertas-en-AirPods.jpg?width=768&aspect_ratio=16:9&format=nowebp"
+    img: "https://ocelot.com.mx/wp-content/uploads/2024/12/PHANTOM-HD-3.jpg"
+  },
+  {
+    titulo: "Tarjeta de video GTX 1660",
+    desc: "Rendimiento excepcional para gaming y diseño gráfico.",
+    precio: "$1.200.000",
+    img: "https://cyberteccr.com/storage/2022/09/Aorus-Geforce-RTX-3090-2.png"
+  },
+  {
+    titulo: "CPU Ryzen 7 7800",
+    desc: "Procesador de alto rendimiento para gaming y multitarea.",
+    precio: "$320.000",
+    img: "https://www.coolmod.com/blog/wp-content/uploads/2024/01/AMD-Ryzen-7-7800X-3D.jpg"
+  },
+  {
+    titulo: "Modem WiFi 6",
+    desc: "Conexión ultrarrápida y estable para todos tus dispositivos.",
+    precio: "$180.000",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5aRvp1DRUy79JBgP5xlKH8yy7DEYGQix9uA&s"
   }
 ];
 
+// Carrito de compras
+let carrito = [];
+
+// Función para actualizar la vista del carrito
+function actualizarCarrito() {
+  const carritoDiv = document.getElementById("carrito");
+  if (!carritoDiv) return;
+  carritoDiv.innerHTML = "";
+  if (carrito.length === 0) {
+    carritoDiv.textContent = "El carrito está vacío.";
+    return;
+  }
+  carrito.forEach((producto, idx) => {
+    const item = document.createElement("div");
+    item.textContent = `${producto.titulo} - ${producto.precio}`;
+    const btnQuitar = document.createElement("button");
+    btnQuitar.textContent = "Retirar";
+    btnQuitar.addEventListener("click", () => {
+      retirarProducto(idx);
+    });
+    item.appendChild(btnQuitar);
+    carritoDiv.appendChild(item);
+  });
+}
+
+// Función para comprar/agregar al carrito
+function comprarProducto(producto) {
+  carrito.push(producto);
+  actualizarCarrito();
+  alert(`¡${producto.titulo} agregado al carrito!`);
+}
+
+// Función para retirar producto del carrito
+function retirarProducto(idx) {
+  carrito.splice(idx, 1);
+  actualizarCarrito();
+}
+
+// Renderizado de productos
 productos.forEach(producto => {
   const clon = template.content.cloneNode(true);
   clon.querySelector(".title").textContent = producto.titulo;
@@ -42,7 +99,10 @@ productos.forEach(producto => {
   clon.querySelector(".product-img").src = producto.img;
   clon.querySelector(".product-img").alt = producto.titulo;
   clon.querySelector(".buy-btn").addEventListener("click", () => {
-    alert(`¡Gracias por tu interés en ${producto.titulo}! Pronto nos pondremos en contacto.`);
+    comprarProducto(producto);
   });
   contenedor.appendChild(clon);
 });
+
+// Inicializar carrito en la vista
+actualizarCarrito();
